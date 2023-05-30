@@ -104,39 +104,6 @@ def main():
         col2.write("Choose an attack creature 2")
         col1.write("Waiting on Creature 2...")
 
-def notfication():
-    col1.write(f"\nCreature 1 Health: {creature1.health}")
-    col2.write(f"\nCreature 2 Health: {creature2.health}")
-
-    if creature1.health <= 0:
-        col1.write("Victory!")
-        col2.write("Defeat...")
-    elif creature2.health <= 0:
-        col2.write("Victory!")
-        col1.write("Defeat...")
-
-def c_turn_one():
-    col1.write("Opponent's Turn...")
-    col2.write("Your Turn...")
-
-def c_turn_two():
-    col1.write("Your Turn...")
-    col2.write("Opponent's Turn...")
-
-
-def re_calculate():
-    global counter  # Declare counter as a global variable
-    if counter == 2:
-        if creature1.speed > creature2.speed:
-            col1.write("Choose an attack creature 1")
-            col2.write("Waiting on Creature 1...")
-            counter = 0
-        else:
-            col2.write("\nChoose an attack creature 2")
-            col1.write("\nWaiting on Creature 2...")
-            counter = 0
-
-
 def attack_one():
     global counter  # Declare counter as a global variable
     # Action to be performed when the button is clicked
@@ -202,6 +169,37 @@ def attack_six():
     c_turn_two()
     re_calculate()
 
+def notfication():
+    col1.write(f"\nCreature 1 Health: {creature1.health}")
+    col2.write(f"\nCreature 2 Health: {creature2.health}")
+
+    if creature1.health <= 0:
+        col1.write("Victory!")
+        col2.write("Defeat...")
+    elif creature2.health <= 0:
+        col2.write("Defeat...")
+        col1.write("Victory")
+
+def c_turn_one():
+    col1.write("Opponent's Turn...")
+    col2.write("Your Turn...")
+
+def c_turn_two():
+    col1.write("Your Turn...")
+    col2.write("Opponent's Turn...")
+
+
+def re_calculate():
+    global counter  # Declare counter as a global variable
+    if counter == 2:
+        if creature1.speed > creature2.speed:
+            col1.write("Choose an attack creature 1")
+            col2.write("Waiting on Creature 1...")
+            counter = 0
+        else:
+            col2.write("\nChoose an attack creature 2")
+            col1.write("\nWaiting on Creature 2...")
+            counter = 0
 
 if __name__ == "__main__":
     main()
