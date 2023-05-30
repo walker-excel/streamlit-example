@@ -111,7 +111,7 @@ def notfication():
     if creature1.health > 0:
         col1.write("Victory!")
         col2.write("Defeat...")
-    else
+    else:
         col2.write("Victory!")
         col1.write("Defeat...")
     
