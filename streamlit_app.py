@@ -62,17 +62,6 @@ class MoveType:
     Physical = 1
     Magic = 2
 
-creature1 = Creature(10, 100, 20, 30, 15, 10, 5, 50)
-creature2 = Creature(8, 80, 15, 25, 12, 8, 3, 60)
-
-global counter
-
-move1 = Move("Fireball", 40, MoveType.Magic, False)
-move2 = Move("Heal", 30, MoveType.Magic, True)
-move3 = Move("Tackle", 20, MoveType.Physical, False)
-move4 = Move("Firebolt", 40, MoveType.Magic, False)
-move5 = Move("Cure", 30, MoveType.Magic, True)
-move6 = Move("Rush", 20, MoveType.Physical, False)
 
 def notfication():
     col1.write(f"Creature 1 Health: {creature1.health}")
@@ -88,10 +77,9 @@ def notfication():
         col1.write("Opponent's Turn...")
         col2.write("Your Turn...")
 
+
 def re_calculate():
-
-    global counter
-
+    global counter  # Declare counter as a global variable
     if counter == 2:
         if creature1.speed > creature2.speed:
             col1.write("Choose an attack")
@@ -105,54 +93,59 @@ def re_calculate():
 def attack_one():
     # Action to be performed when the button is clicked
     creature1.attack(move1, creature2)
-    counter += 1
+    counter += 1  # Add 1 to counter
 
     notfication()
     re_calculate()
+
 
 def attack_two():
     # Action to be performed when the button is clicked
     creature1.attack(move2, creature2)
-    counter += 1
+    counter += 1  # Add 1 to counter
 
     notfication()
     re_calculate()
+
 
 def attack_three():
     # Action to be performed when the button is clicked
     creature1.attack(move3, creature2)
-    counter += 1
+    counter += 1  # Add 1 to counter
 
     notfication()
     re_calculate()
+
 
 def attack_four():
     # Action to be performed when the button is clicked
     creature2.attack(move4, creature1)
-    counter += 1
+    counter += 1  # Add 1 to counter
 
     notfication()
     re_calculate()
+
 
 def attack_five():
     # Action to be performed when the button is clicked
     creature2.attack(move5, creature1)
-    counter += 1
+    counter += 1  # Add 1 to counter
 
     notfication()
     re_calculate()
+
 
 def attack_six():
     # Action to be performed when the button is clicked
     creature2.attack(move6, creature1)
-    counter += 1
+    counter += 1  # Add 1 to counter
 
     notfication()
     re_calculate()
 
+
 def main():
-    
-    global creature1, creature2, counter
+    global creature1, creature2, counter  # Declare variables as global
 
     creature1 = Creature(10, 100, 20, 30, 15, 10, 5, 50)
     creature2 = Creature(8, 80, 15, 25, 12, 8, 3, 60)
@@ -171,7 +164,7 @@ def main():
 
     st.title("Pokemon Battle")
 
-    col1, col2, = st.columns(2)
+    col1, col2 = st.columns(2)
 
     with col1:
         st.header("Creature 1")
@@ -192,6 +185,6 @@ def main():
         col2.write("Choose an attack")
         col1.write("Waiting...")
 
+
 if __name__ == "__main__":
     main()
-
