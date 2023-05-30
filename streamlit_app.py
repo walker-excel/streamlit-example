@@ -68,7 +68,7 @@ move6 = Move("Rush", 20, MoveType.Physical, False) # Define move6
 global line_number
 
 def main():
-    global creature1, creature2, counter, line_number  # Declare variables as global
+    global creature1, creature2, counter, line_number, attack_one, attack_two  # Declare variables as global
 
     creature1 = Creature(10, 100, 20, 30, 15, 10, 5, 50)
     creature2 = Creature(8, 80, 15, 25, 12, 8, 3, 60)
