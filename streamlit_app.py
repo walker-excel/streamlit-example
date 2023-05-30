@@ -1,4 +1,6 @@
 import streamlit as st
+from streamlit.report_thread import get_report_ctx
+from streamlit.server.server import Server
 
 """
 # Welcome to Streamlit!
@@ -75,40 +77,44 @@ def main():
 
     col1, col2 = st.columns(2)
 
-    attack_outputs = []  # List to store attack outputs
+    # Get or create the SessionState for storing attack outputs
+    session_state = get_session_state()
+
+    if "attack_outputs" not in session_state:
+        session_state.attack_outputs = []
 
     with col1:
         st.header("Creature 1")
         if st.button(f"{move1.name}"):
             output = attack_one(creature1, creature2, move1)
-            attack_outputs.append(output)
-            check_win_condition(creature1, creature2, attack_outputs)
+            session_state.attack_outputs.append(output)
+            check_win_condition(creature1, creature2, session_state.attack_outputs)
         if st.button(f"{move2.name}"):
             output = attack_two(creature1, creature2, move2)
-            attack_outputs.append(output)
-            check_win_condition(creature1, creature2, attack_outputs)
+            session_state.attack_outputs.append(output)
+            check_win_condition(creature1, creature2, session_state.attack_outputs)
         if st.button(f"{move3.name}"):
             output = attack_three(creature1, creature2, move3)
-            attack_outputs.append(output)
-            check_win_condition(creature1, creature2, attack_outputs)
+            session_state.attack_outputs.append(output)
+            check_win_condition(creature1, creature2, session_state.attack_outputs)
 
     with col2:
         st.header("Creature 2")
         if st.button(f"{move4.name}"):
-            output = attack_four(creature2, creature1, move4)
-            attack_outputs.append(output)
-            check_win_condition(creature1, creature2, attack_outputs)
+            output = attack_four(creature1, creature2, move4)
+            session_state.attack_outputs.append(output)
+            check_win_condition(creature1, creature2, session_state.attack_outputs)
         if st.button(f"{move5.name}"):
-            output = attack_five(creature2, creature1, move5)
-            attack_outputs.append(output)
-            check_win_condition(creature1, creature2, attack_outputs)
+            output = attack_five(creature1, creature2, move5)
+            session_state.attack_outputs.append(output)
+            check_win_condition(creature1, creature2, session_state.attack_outputs)
         if st.button(f"{move6.name}"):
-            output = attack_six(creature2, creature1, move6)
-            attack_outputs.append(output)
-            check_win_condition(creature1, creature2, attack_outputs)
+            output = attack_six(creature1, creature2, move6)
+            session_state.attack_outputs.append(output)
+            check_win_condition(creature1, creature2, session_state.attack_outputs)
 
     st.write("Attack Logs:")
-    st.write("\n".join(attack_outputs))
+    st.write("\n".join(session_state.attack_outputs))  # Display attack logs as separate lines
 
 
 def attack_one(attacker, defender, move):
@@ -146,6 +152,20 @@ def check_win_condition(creature1, creature2, attack_outputs):
         attack_outputs.append("Creature 1 has 0 HP. Creature 2 Wins!")
     elif creature2.health <= 0:
         attack_outputs.append("Creature 2 has 0 HP. Creature 1 Wins!")
+
+
+# Define the `get_session_state` function to create or get the SessionState object
+def get_session_state():
+    session_id = get_report_ctx().session_id
+    session_info = Server.get_current()._get_session_info(session_id)
+    if session_info.session_state is None:
+        session_info.session_state = SessionState()
+    return session_info.session_state
+
+
+# Define the `SessionState` class
+class SessionState:
+    pass
 
 
 if __name__ == "__main__":
