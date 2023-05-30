@@ -73,7 +73,7 @@ def notfication():
         col1.write("Opponent's Turn...")
         col2.write("Your Turn...")
 
-def re_calculate()
+def re_calculate():
     if counter == 2:
         if creature1.speed > creature2.speed:
             col1.write("Choose an attack")
