@@ -62,6 +62,13 @@ class MoveType:
     Physical = 1
     Magic = 2
 
+move1 = Move("Fireball", 40, MoveType.Magic, False) # Define move1
+move2 = Move("Heal", 30, MoveType.Magic, True) # Define move2
+move3 = Move("Tackle", 20, MoveType.Physical, False) # Define move3
+move4 = Move("Firebolt", 40, MoveType.Magic, False)  # Define move4
+move5 = Move("Cure", 30, MoveType.Magic, True) # Define move5
+move6 = Move("Rush", 20, MoveType.Physical, False) # Define move6
+
 
 def notfication():
     col1.write(f"Creature 1 Health: {creature1.health}")
@@ -151,13 +158,6 @@ def main():
     creature2 = Creature(8, 80, 15, 25, 12, 8, 3, 60)
 
     counter = 0
-
-    move1 = Move("Fireball", 40, MoveType.Magic, False) # Define move1
-    move2 = Move("Heal", 30, MoveType.Magic, True) # Define move2
-    move3 = Move("Tackle", 20, MoveType.Physical, False) # Define move3
-    move4 = Move("Firebolt", 40, MoveType.Magic, False)  # Define move4
-    move5 = Move("Cure", 30, MoveType.Magic, True) # Define move5
-    move6 = Move("Rush", 20, MoveType.Physical, False) # Define move6
 
     faster_creature = creature1 if creature1.speed > creature2.speed else creature2
     slower_creature = creature2 if faster_creature == creature1 else creature1
