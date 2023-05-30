@@ -111,7 +111,7 @@ def attack_one():
     global counter, line_number  # Declare counter as a global variable
     # Action to be performed when the button is clicked
     creature1.attack(move1, creature2)
-    st.write(f"{line_number}. Creature 1 dealt {damage_amount} damage to Creature 2 which now has {creature2.health}HP.")
+    st.write(f"{line_number}. Creature 1 dealt {attack} damage to Creature 2 which now has {creature2.health}HP.")
     line_number += 1
 
     if counter == 2:
@@ -160,7 +160,7 @@ def attack_four():
     global counter, line_number  # Declare counter as a global variable
     # Action to be performed when the button is clicked
     creature2.attack(move4, creature1)
-    st.write(f"{line_number}. Creature 2 dealt {damage_amount} damage to Creature 1 which now has {creature1.health}HP.")
+    st.write(f"{line_number}. Creature 2 dealt {attack} damage to Creature 1 which now has {creature1.health}HP.")
     line_number += 1
 
     if counter == 2:
