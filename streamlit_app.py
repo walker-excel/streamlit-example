@@ -69,8 +69,6 @@ move4 = Move("Firebolt", 40, MoveType.Magic, False)  # Define move4
 move5 = Move("Cure", 30, MoveType.Magic, True) # Define move5
 move6 = Move("Rush", 20, MoveType.Physical, False) # Define move6
 
-col1, col2 = st.columns(2)
-
 def main():
     global creature1, creature2, counter  # Declare variables as global
 
@@ -83,6 +81,8 @@ def main():
     slower_creature = creature2 if faster_creature == creature1 else creature1
 
     st.title("Pokemon Battle")
+
+    global col1, col2 = st.columns(2)
 
     with col1:
         st.header("Creature 1")
