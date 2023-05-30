@@ -105,18 +105,18 @@ def main():
         col1.write("Waiting...")
 
 def notfication():
-    col1.write(f"Creature 1 Health: {creature1.health}")
-    col2.write(f"Creature 2 Health: {creature2.health}")
+    col1.write(f"\nCreature 1 Health: {creature1.health}")
+    col2.write(f"\nCreature 2 Health: {creature2.health}")
 
     if creature1.health > 0:
         col1.write("Victory!")
         col2.write("Defeat...")
-    else:
+    elif creature2.health > 0:
         col2.write("Victory!")
         col1.write("Defeat...")
-    
-    col1.write("Opponent's Turn...")
-    col2.write("Your Turn...")
+    else:
+        col1.write("Opponent's Turn...")
+        col2.write("Your Turn...")
 
 
 def re_calculate():
