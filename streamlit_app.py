@@ -75,23 +75,29 @@ def main():
 
     col1, col2 = st.columns(2)
 
+    attack_outputs = []  # List to store attack outputs
+
     with col1:
         st.header("Creature 1")
         if st.button(f"{move1.name}"):
-            attack_one(creature1, creature2, move1)
+            attack_outputs.append(attack_one(creature1, creature2, move1))
         if st.button(f"{move2.name}"):
-            attack_two(creature1, creature2, move2)
+            attack_outputs.append(attack_two(creature1, creature2, move2))
         if st.button(f"{move3.name}"):
-            attack_three(creature1, creature2, move3)
+            attack_outputs.append(attack_three(creature1, creature2, move3))
 
     with col2:
         st.header("Creature 2")
         if st.button(f"{move4.name}"):
-            attack_four(creature1, creature2, move4)
+            attack_outputs.append(attack_four(creature1, creature2, move4))
         if st.button(f"{move5.name}"):
-            attack_five(creature1, creature2, move5)
+            attack_outputs.append(attack_five(creature1, creature2, move5))
         if st.button(f"{move6.name}"):
-            attack_six(creature1, creature2, move6)
+            attack_outputs.append(attack_six(creature1, creature2, move6))
+
+    st.write("Attack Outputs:")
+    for output in attack_outputs:
+        st.write(output)
 
 
 def attack_one(attacker, defender, move):
