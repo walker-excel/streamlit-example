@@ -80,20 +80,32 @@ def main():
     with col1:
         st.header("Creature 1")
         if st.button(f"{move1.name}"):
-            attack_outputs.append(attack_one(creature1, creature2, move1))
+            output = attack_one(creature1, creature2, move1)
+            attack_outputs.append(output)
+            check_win_conditions(creature1, creature2, output)
         if st.button(f"{move2.name}"):
-            attack_outputs.append(attack_two(creature1, creature2, move2))
+            output = attack_two(creature1, creature2, move2)
+            attack_outputs.append(output)
+            check_win_conditions(creature1, creature2, output)
         if st.button(f"{move3.name}"):
-            attack_outputs.append(attack_three(creature1, creature2, move3))
+            output = attack_three(creature1, creature2, move3)
+            attack_outputs.append(output)
+            check_win_conditions(creature1, creature2, output)
 
     with col2:
         st.header("Creature 2")
         if st.button(f"{move4.name}"):
-            attack_outputs.append(attack_four(creature1, creature2, move4))
+            output = attack_four(creature1, creature2, move4)
+            attack_outputs.append(output)
+            check_win_conditions(creature1, creature2, output)
         if st.button(f"{move5.name}"):
-            attack_outputs.append(attack_five(creature1, creature2, move5))
+            output = attack_five(creature1, creature2, move5)
+            attack_outputs.append(output)
+            check_win_conditions(creature1, creature2, output)
         if st.button(f"{move6.name}"):
-            attack_outputs.append(attack_six(creature1, creature2, move6))
+            output = attack_six(creature1, creature2, move6)
+            attack_outputs.append(output)
+            check_win_conditions(creature1, creature2, output)
 
     st.write("Attack Outputs:")
     for output in attack_outputs:
@@ -102,44 +114,40 @@ def main():
 
 def attack_one(attacker, defender, move):
     damage = attacker.attack(move, defender)
-    st.write(f"Creature 1 dealt {damage} damage to Creature 2. Creature 2 now has {defender.health} HP.")
-    check_win_conditions(attacker, defender)
+    return f"Creature 1 dealt {damage} damage to Creature 2. Creature 2 now has {defender.health} HP."
 
 
 def attack_two(attacker, defender, move):
     healing = attacker.attack(move, defender)
-    st.write(f"Creature 1 healed for {healing} HP. Creature 1 now has {attacker.health} HP.")
-    check_win_conditions(attacker, defender)
+    return f"Creature 1 healed for {healing} HP. Creature 1 now has {attacker.health} HP."
 
 
 def attack_three(attacker, defender, move):
     damage = attacker.attack(move, defender)
-    st.write(f"Creature 1 dealt {damage} damage to Creature 2. Creature 2 now has {defender.health} HP.")
-    check_win_conditions(attacker, defender)
+    return f"Creature 1 dealt {damage} damage to Creature 2. Creature 2 now has {defender.health} HP."
 
 
 def attack_four(attacker, defender, move):
     damage = attacker.attack(move, defender)
-    st.write(f"Creature 2 dealt {damage} damage to Creature 1. Creature 1 now has {defender.health} HP.")
-    check_win_conditions(attacker, defender)
+    return f"Creature 2 dealt {damage} damage to Creature 1. Creature 1 now has {defender.health} HP."
 
 
 def attack_five(attacker, defender, move):
     healing = attacker.attack(move, defender)
-    st.write(f"Creature 2 healed for {healing} HP. Creature 2 now has {attacker.health} HP.")
-    check_win_conditions(attacker, defender)
+    return f"Creature 2 healed for {healing} HP. Creature 2 now has {attacker.health} HP."
 
 
 def attack_six(attacker, defender, move):
     damage = attacker.attack(move, defender)
-    st.write(f"Creature 2 dealt {damage} damage to Creature 1. Creature 1 now has {defender.health} HP.")
-    check_win_conditions(attacker, defender)
+    return f"Creature 2 dealt {damage} damage to Creature 1. Creature 1 now has {defender.health} HP."
 
 
-def check_win_conditions(attacker, defender):
-    if attacker.health <= 0:
+def check_win_conditions(creature1, creature2, attack_output):
+    st.write(attack_output)
+
+    if creature1.health <= 0:
         st.write("Creature 1 has 0 HP. Creature 2 Wins!")
-    elif defender.health <= 0:
+    elif creature2.health <= 0:
         st.write("Creature 2 has 0 HP. Creature 1 Wins!")
 
 
