@@ -167,7 +167,7 @@ def attack_four():
 
     if counter == 2:
         if creature1.speed > creature2.speed:
-            st.write(f"{line_number}. Creature 1 has a speed of {creature1.speed} which is higher than Creature 2's {creature2.speed}. Creature 1's Turn to Attack")
+            st.write(f"{line_number}. Creature 1 has a speed of {creature1.speed} which is higher fgsgdgsgsbcbc than Creature 2's {creature2.speed}. Creature 1's Turn to Attack")
             counter = 0
         else:
             st.write(f"{line_number}. Creature 2 has a speed of {creature2.speed} which is higher than Creature 1's {creature1.speed}. Creature 2's Turn to Attack")
