@@ -15,6 +15,9 @@ forums](https://discuss.streamlit.io).
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
 
+import streamlit as st
+
+
 class Creature:
     def __init__(self, level, health, physical_attack, magic_attack, armor, magic_resistance, faith, speed):
         self.level = level
@@ -66,6 +69,40 @@ move4 = Move("Firebolt", 40, MoveType.Magic, False)  # Define move4
 move5 = Move("Cure", 30, MoveType.Magic, True) # Define move5
 move6 = Move("Rush", 20, MoveType.Physical, False) # Define move6
 
+
+def main():
+    global creature1, creature2, counter  # Declare variables as global
+
+    creature1 = Creature(10, 100, 20, 30, 15, 10, 5, 50)
+    creature2 = Creature(8, 80, 15, 25, 12, 8, 3, 60)
+
+    counter = 0
+
+    faster_creature = creature1 if creature1.speed > creature2.speed else creature2
+    slower_creature = creature2 if faster_creature == creature1 else creature1
+
+    st.title("Pokemon Battle")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.header("Creature 1")
+        st.button(f"{move1.name}", on_click=attack_one)
+        st.button(f"{move2.name}", on_click=attack_two)
+        st.button(f"{move3.name}", on_click=attack_three)
+
+    with col2:
+        st.header("Creature 2")
+        st.button(f"{move4.name}", on_click=attack_four)
+        st.button(f"{move5.name}", on_click=attack_five)
+        st.button(f"{move6.name}", on_click=attack_six)
+
+    if creature1.speed > creature2.speed:
+        col1.write("Choose an attack")
+        col2.write("Waiting...")
+    else:
+        col2.write("Choose an attack")
+        col1.write("Waiting...")
 
 def notfication():
     col1.write(f"Creature 1 Health: {creature1.health}")
@@ -152,41 +189,6 @@ def attack_six():
 
     notfication()
     re_calculate()
-
-
-def main():
-    global creature1, creature2, counter  # Declare variables as global
-
-    creature1 = Creature(10, 100, 20, 30, 15, 10, 5, 50)
-    creature2 = Creature(8, 80, 15, 25, 12, 8, 3, 60)
-
-    counter = 0
-
-    faster_creature = creature1 if creature1.speed > creature2.speed else creature2
-    slower_creature = creature2 if faster_creature == creature1 else creature1
-
-    st.title("Pokemon Battle")
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.header("Creature 1")
-        st.button(f"{move1.name}", on_click=attack_one)
-        st.button(f"{move2.name}", on_click=attack_two)
-        st.button(f"{move3.name}", on_click=attack_three)
-
-    with col2:
-        st.header("Creature 2")
-        st.button(f"{move4.name}", on_click=attack_four)
-        st.button(f"{move5.name}", on_click=attack_five)
-        st.button(f"{move6.name}", on_click=attack_six)
-
-    if creature1.speed > creature2.speed:
-        col1.write("Choose an attack")
-        col2.write("Waiting...")
-    else:
-        col2.write("Choose an attack")
-        col1.write("Waiting...")
 
 
 if __name__ == "__main__":
