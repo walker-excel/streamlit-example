@@ -115,11 +115,11 @@ def notfication():
         col2.write("Victory!")
         col1.write("Defeat...")
 
-def c_turn_one()
+def c_turn_one():
     col1.write("Opponent's Turn...")
     col2.write("Your Turn...")
 
-def c_turn_two()
+def c_turn_two():
     col1.write("Your Turn...")
     col2.write("Opponent's Turn...")
 
