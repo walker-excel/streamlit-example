@@ -80,7 +80,7 @@ def main():
     faster_creature = creature1 if creature1.speed > creature2.speed else creature2
     slower_creature = creature2 if faster_creature == creature1 else creature1
 
-    st.title("Pokemon Battle")
+    st.title("Test Battle")
 
     global col1, col2
     col1, col2 = st.columns(2)
@@ -97,12 +97,14 @@ def main():
         st.button(f"{move5.name}", on_click=attack_five)
         st.button(f"{move6.name}", on_click=attack_six)
 
+    notfication()
+
     if creature1.speed > creature2.speed:
-        col1.write("Choose an attack creature 1")
-        col2.write("Waiting on Creature 1...")
+        col1.write("Faster")
+        col2.write("Slower")
     else:
-        col2.write("Choose an attack creature 2")
-        col1.write("Waiting on Creature 2...")
+        col2.write("Slower")
+        col1.write("Faster")
 
 def attack_one():
     global counter  # Declare counter as a global variable
