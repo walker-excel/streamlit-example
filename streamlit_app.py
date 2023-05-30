@@ -15,9 +15,6 @@ forums](https://discuss.streamlit.io).
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
 
-import streamlit as st
-
-
 class Creature:
     def __init__(self, level, health, physical_attack, magic_attack, armor, magic_resistance, faith, speed):
         self.level = level
@@ -89,6 +86,9 @@ def notfication():
         col2.write("Your Turn...")
 
 def re_calculate():
+    
+    global counter
+
     if counter == 2:
         if creature1.speed > creature2.speed:
             col1.write("Choose an attack")
