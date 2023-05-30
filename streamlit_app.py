@@ -81,32 +81,6 @@ def main():
 
     st.title("Test Battle")
 
-    global col1, col2
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.header("Creature 1")
-        st.button(f"{move1.name}", on_click=attack_one)
-        st.button(f"{move2.name}", on_click=attack_two)
-        st.button(f"{move3.name}", on_click=attack_three)
-
-    with col2:
-        st.header("Creature 2")
-        st.button(f"{move4.name}", on_click=attack_four)
-        st.button(f"{move5.name}", on_click=attack_five)
-        st.button(f"{move6.name}", on_click=attack_six)
-
-    st.write(f"{line_number}. Creature 1 has {creature1.health}HP and Creature 2 has {creature2.health}HP")
-
-    line_number += 1
-
-    if creature1.speed > creature2.speed:
-        st.write(f"{line_number}. Creature 1 has a speed of {creature1.speed} which is higher than Creature 2's {creature2.speed}. Creature 1's Turn to Attack")
-    else:
-        st.write(f"{line_number}. Creature 2 has a speed of {creature2.speed} which is higher than Creature 1's {creature1.speed}. Creature 2's Turn to Attack")
-
-    line_number += 1
-
     def attack_one():
         global counter, line_number  # Declare counter and line_number as global variables
         # Action to be performed when the button is clicked
@@ -156,6 +130,32 @@ def main():
 
         line_number += 1
         counter += 1  # Add 1 to counter
+
+    global col1, col2
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.header("Creature 1")
+        st.button(f"{move1.name}", on_click=attack_one)
+        st.button(f"{move2.name}", on_click=attack_two)
+        st.button(f"{move3.name}", on_click=attack_three)
+
+    with col2:
+        st.header("Creature 2")
+        st.button(f"{move4.name}", on_click=attack_four)
+        st.button(f"{move5.name}", on_click=attack_five)
+        st.button(f"{move6.name}", on_click=attack_six)
+
+    st.write(f"{line_number}. Creature 1 has {creature1.health}HP and Creature 2 has {creature2.health}HP")
+
+    line_number += 1
+
+    if creature1.speed > creature2.speed:
+        st.write(f"{line_number}. Creature 1 has a speed of {creature1.speed} which is higher than Creature 2's {creature2.speed}. Creature 1's Turn to Attack")
+    else:
+        st.write(f"{line_number}. Creature 2 has a speed of {creature2.speed} which is higher than Creature 1's {creature1.speed}. Creature 2's Turn to Attack")
+
+    line_number += 1
 
 def attack_two():
     global counter  # Declare counter as a global variable
