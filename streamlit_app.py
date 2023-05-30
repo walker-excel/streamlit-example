@@ -40,10 +40,12 @@ class Creature:
             healing_amount = self.calculate_healing(move)
             self.health += healing_amount
             st.write(f"Creature healed for {healing_amount} health.")
+            return int(healing_amount)
         else:
             damage_amount = self.calculate_damage(move, defender)
             defender.health -= damage_amount
             st.write(f"Creature dealt {damage_amount} damage to the opponent.")
+            return int(damage_amount)
 
 
 class Move:
@@ -66,12 +68,13 @@ move5 = Move("Cure", 30, MoveType.Magic, True) # Define move5
 move6 = Move("Rush", 20, MoveType.Physical, False) # Define move6
 
 def main():
-    global creature1, creature2, counter  # Declare variables as global
+    global creature1, creature2, counter, line_number  # Declare variables as global
 
     creature1 = Creature(10, 100, 20, 30, 15, 10, 5, 50)
     creature2 = Creature(8, 80, 15, 25, 12, 8, 3, 60)
 
     counter = 0
+    line_number = 1
 
     faster_creature = creature1 if creature1.speed > creature2.speed else creature2
     slower_creature = creature2 if faster_creature == creature1 else creature1
@@ -93,25 +96,40 @@ def main():
         st.button(f"{move5.name}", on_click=attack_five)
         st.button(f"{move6.name}", on_click=attack_six)
 
-    notfication()
+    st.write(f"{line_number}. Creature 1 has {creature1.health}HP and Creature 2 has {creature2.health}HP")
+
+    line_number += 1
 
     if creature1.speed > creature2.speed:
-        col1.write("Faster")
-        col2.write("Slower")
+        st.write(f"{line_number}. Creature 1 has a speed of {creature1.speed} which is higher than Creature 2's {creature2.speed}. Creature 1's Turn to Attack")
     else:
-        col2.write("Faster")
-        col1.write("Slower")
+        st.write(f"{line_number}. Creature 2 has a speed of {creature2.speed} which is higher than Creature 1's {creature1.speed}. Creature 2's Turn to Attack")
+
+    line_number += 1
 
 def attack_one():
-    global counter  # Declare counter as a global variable
+    global counter, line_number  # Declare counter as a global variable
     # Action to be performed when the button is clicked
     creature1.attack(move1, creature2)
-    counter += 1  # Add 1 to counter
+    st.write(f"{line_number}. Creature 1 dealt {damage_amount} damage to Creature 2 which now has {creature2.health}HP.")
+    line_number += 1
 
-    notfication()
-    c_turn_one()
-    re_calculate()
-    v_notification()
+    if counter == 2:
+        if creature1.speed > creature2.speed:
+            st.write(f"{line_number}. Creature 1 has a speed of {creature1.speed} which is higher than Creature 2's {creature2.speed}. Creature 1's Turn to Attack")
+            counter = 0
+        else:
+            st.write(f"{line_number}. Creature 2 has a speed of {creature2.speed} which is higher than Creature 1's {creature1.speed}. Creature 2's Turn to Attack")
+            counter = 0
+    elif creature1.health <= 0:
+        st.write(f"{line_number}. Creature 1 has {creature1.health}HP. Creature 2 Wins!")
+    elif creature2.health <= 0:
+        st.write(f"{line_number}. Creature 2 has {creature2.health}HP. Creature 1 Wins!")
+    else:
+        st.write(f"{line_number}. Creature 2's turn to attack")
+
+    line_number += 1
+    counter += 1  # Add 1 to counter
 
 
 def attack_two():
@@ -139,15 +157,28 @@ def attack_three():
 
 
 def attack_four():
-    global counter  # Declare counter as a global variable
+    global counter, line_number  # Declare counter as a global variable
     # Action to be performed when the button is clicked
     creature2.attack(move4, creature1)
-    counter += 1  # Add 1 to counter
+    st.write(f"{line_number}. Creature 2 dealt {damage_amount} damage to Creature 1 which now has {creature1.health}HP.")
+    line_number += 1
 
-    notfication()
-    c_turn_two()
-    re_calculate()
-    v_notification()
+    if counter == 2:
+        if creature1.speed > creature2.speed:
+            st.write(f"{line_number}. Creature 1 has a speed of {creature1.speed} which is higher than Creature 2's {creature2.speed}. Creature 1's Turn to Attack")
+            counter = 0
+        else:
+            st.write(f"{line_number}. Creature 2 has a speed of {creature2.speed} which is higher than Creature 1's {creature1.speed}. Creature 2's Turn to Attack")
+            counter = 0
+    elif creature1.health <= 0:
+        st.write(f"{line_number}. Creature 1 has {creature1.health}HP. Creature 2 Wins!")
+    elif creature2.health <= 0:
+        st.write(f"{line_number}. Creature 2 has {creature2.health}HP. Creature 1 Wins!")
+    else:
+        st.write(f"{line_number}. Creature 1's turn to attack")
+
+    line_number += 1
+    counter += 1  # Add 1 to counter
 
 
 def attack_five():
