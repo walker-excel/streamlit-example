@@ -67,6 +67,8 @@ move4 = Move("Firebolt", 40, MoveType.Magic, False)  # Define move4
 move5 = Move("Cure", 30, MoveType.Magic, True) # Define move5
 move6 = Move("Rush", 20, MoveType.Physical, False) # Define move6
 
+global line_number
+
 def main():
     global creature1, creature2, counter, line_number  # Declare variables as global
 
@@ -167,7 +169,7 @@ def attack_four():
 
     if counter == 2:
         if creature1.speed > creature2.speed:
-            st.write(f"{line_number}. Creature 1 has a speed of {creature1.speed} which is higher fgsgdgsgsbcbc than Creature 2's {creature2.speed}. Creature 1's Turn to Attack")
+            st.write(f"{line_number}. Creature 1 has a speed of {creature1.speed} which is higher than Creature 2's {creature2.speed}. Creature 1's Turn to Attack")
             counter = 0
         else:
             st.write(f"{line_number}. Creature 2 has a speed of {creature2.speed} which is higher than Creature 1's {creature1.speed}. Creature 2's Turn to Attack")
