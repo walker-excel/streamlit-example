@@ -141,9 +141,9 @@ def main():
     move1 = Move("Fireball", 40, MoveType.Magic, False)
     move2 = Move("Heal", 30, MoveType.Magic, True)
     move3 = Move("Tackle", 20, MoveType.Physical, False)
-    move4 = Move("Fireball", 40, MoveType.Magic, False)
-    move5 = Move("Heal", 30, MoveType.Magic, True)
-    move6 = Move("Tackle", 20, MoveType.Physical, False)
+    move4 = Move("Firebolt", 40, MoveType.Magic, False)
+    move5 = Move("Cure", 30, MoveType.Magic, True)
+    move6 = Move("Rush", 20, MoveType.Physical, False)
 
     faster_creature = creature1 if creature1.speed > creature2.speed else creature2
     slower_creature = creature2 if faster_creature == creature1 else creature1
