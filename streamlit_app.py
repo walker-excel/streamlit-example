@@ -15,9 +15,6 @@ forums](https://discuss.streamlit.io).
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
 
-import streamlit as st
-
-
 class Creature:
     def __init__(self, level, health, physical_attack, magic_attack, armor, magic_resistance, faith, speed):
         self.level = level
@@ -98,6 +95,7 @@ def re_calculate():
 
 
 def attack_one():
+    global counter  # Declare counter as a global variable
     # Action to be performed when the button is clicked
     creature1.attack(move1, creature2)
     counter += 1  # Add 1 to counter
@@ -107,6 +105,7 @@ def attack_one():
 
 
 def attack_two():
+    global counter  # Declare counter as a global variable
     # Action to be performed when the button is clicked
     creature1.attack(move2, creature2)
     counter += 1  # Add 1 to counter
@@ -116,6 +115,7 @@ def attack_two():
 
 
 def attack_three():
+    global counter  # Declare counter as a global variable
     # Action to be performed when the button is clicked
     creature1.attack(move3, creature2)
     counter += 1  # Add 1 to counter
@@ -125,6 +125,7 @@ def attack_three():
 
 
 def attack_four():
+    global counter  # Declare counter as a global variable
     # Action to be performed when the button is clicked
     creature2.attack(move4, creature1)
     counter += 1  # Add 1 to counter
@@ -134,6 +135,7 @@ def attack_four():
 
 
 def attack_five():
+    global counter  # Declare counter as a global variable
     # Action to be performed when the button is clicked
     creature2.attack(move5, creature1)
     counter += 1  # Add 1 to counter
@@ -143,6 +145,7 @@ def attack_five():
 
 
 def attack_six():
+    global counter  # Declare counter as a global variable
     # Action to be performed when the button is clicked
     creature2.attack(move6, creature1)
     counter += 1  # Add 1 to counter
