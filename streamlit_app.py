@@ -111,12 +111,12 @@ def notfication():
     if creature1.health > 0:
         col1.write("Victory!")
         col2.write("Defeat...")
-    elif creature2.health > 0:
+    else
         col2.write("Victory!")
         col1.write("Defeat...")
-    else:
-        col1.write("Opponent's Turn...")
-        col2.write("Your Turn...")
+    
+    col1.write("Opponent's Turn...")
+    col2.write("Your Turn...")
 
 
 def re_calculate():
