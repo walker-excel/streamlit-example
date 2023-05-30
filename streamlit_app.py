@@ -113,6 +113,7 @@ def attack_one():
     notfication()
     c_turn_one()
     re_calculate()
+    v_notification()
 
 
 def attack_two():
@@ -124,6 +125,7 @@ def attack_two():
     notfication()
     c_turn_one()
     re_calculate()
+    v_notification()
 
 
 def attack_three():
@@ -135,6 +137,7 @@ def attack_three():
     notfication()
     c_turn_one()
     re_calculate()
+    v_notification()
 
 
 def attack_four():
@@ -146,6 +149,7 @@ def attack_four():
     notfication()
     c_turn_two()
     re_calculate()
+    v_notification()
 
 
 def attack_five():
@@ -157,6 +161,7 @@ def attack_five():
     notfication()
     c_turn_two()
     re_calculate()
+    v_notification()
 
 
 def attack_six():
@@ -168,10 +173,13 @@ def attack_six():
     notfication()
     c_turn_two()
     re_calculate()
+    v_notification()
 
 def notfication():
     col1.write(f"\nCreature 1 Health: {creature1.health}")
     col2.write(f"\nCreature 2 Health: {creature2.health}")
+
+def v_notification():
 
     if creature1.health <= 0:
         col1.write("Victory!")
