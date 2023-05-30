@@ -97,31 +97,44 @@ def main():
 def attack_one(attacker, defender, move):
     damage = attacker.attack(move, defender)
     st.write(f"Creature 1 dealt {damage} damage to Creature 2. Creature 2 now has {defender.health} HP.")
+    check_win_conditions(attacker, defender)
 
 
 def attack_two(attacker, defender, move):
-    damage = attacker.attack(move, defender)
-    st.write(f"Creature 1 healed for {damage} HP. Creature 1 now has {attacker.health} HP.")
+    healing = attacker.attack(move, defender)
+    st.write(f"Creature 1 healed for {healing} HP. Creature 1 now has {attacker.health} HP.")
+    check_win_conditions(attacker, defender)
 
 
 def attack_three(attacker, defender, move):
     damage = attacker.attack(move, defender)
     st.write(f"Creature 1 dealt {damage} damage to Creature 2. Creature 2 now has {defender.health} HP.")
+    check_win_conditions(attacker, defender)
 
 
 def attack_four(attacker, defender, move):
     damage = attacker.attack(move, defender)
     st.write(f"Creature 2 dealt {damage} damage to Creature 1. Creature 1 now has {defender.health} HP.")
+    check_win_conditions(attacker, defender)
 
 
 def attack_five(attacker, defender, move):
-    damage = attacker.attack(move, defender)
-    st.write(f"Creature 2 healed for {damage} HP. Creature 2 now has {attacker.health} HP.")
+    healing = attacker.attack(move, defender)
+    st.write(f"Creature 2 healed for {healing} HP. Creature 2 now has {attacker.health} HP.")
+    check_win_conditions(attacker, defender)
 
 
 def attack_six(attacker, defender, move):
     damage = attacker.attack(move, defender)
     st.write(f"Creature 2 dealt {damage} damage to Creature 1. Creature 1 now has {defender.health} HP.")
+    check_win_conditions(attacker, defender)
+
+
+def check_win_conditions(attacker, defender):
+    if attacker.health <= 0:
+        st.write("Creature 1 has 0 HP. Creature 2 Wins!")
+    elif defender.health <= 0:
+        st.write("Creature 2 has 0 HP. Creature 1 Wins!")
 
 
 if __name__ == "__main__":
