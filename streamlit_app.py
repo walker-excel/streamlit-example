@@ -15,6 +15,9 @@ forums](https://discuss.streamlit.io).
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
 
+import streamlit as st
+
+
 class Creature:
     def __init__(self, level, health, physical_attack, magic_attack, armor, magic_resistance, faith, speed):
         self.level = level
@@ -62,7 +65,7 @@ class MoveType:
 creature1 = Creature(10, 100, 20, 30, 15, 10, 5, 50)
 creature2 = Creature(8, 80, 15, 25, 12, 8, 3, 60)
 
-counter = (0)
+global counter
 
 move1 = Move("Fireball", 40, MoveType.Magic, False)
 move2 = Move("Heal", 30, MoveType.Magic, True)
