@@ -126,7 +126,7 @@ def re_calculate():
             col1.write("Choose an attack")
             col2.write("Waiting...")
             counter = 0
-        else
+        else:
             col2.write("Choose an attack")
             col1.write("Waiting...")
             counter = 0
