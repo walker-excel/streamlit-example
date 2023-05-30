@@ -98,11 +98,11 @@ def main():
         st.button(f"{move6.name}", on_click=attack_six)
 
     if creature1.speed > creature2.speed:
-        col1.write("Choose an attack")
-        col2.write("Waiting...")
+        col1.write("Choose an attack creature 1")
+        col2.write("Waiting on Creature 1...")
     else:
-        col2.write("Choose an attack")
-        col1.write("Waiting...")
+        col2.write("Choose an attack creature 2")
+        col1.write("Waiting on Creature 2...")
 
 def notfication():
     col1.write(f"\nCreature 1 Health: {creature1.health}")
