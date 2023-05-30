@@ -15,10 +15,6 @@ forums](https://discuss.streamlit.io).
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
 
-
-import streamlit as st
-
-
 class Creature:
     def __init__(self, level, health, physical_attack, magic_attack, armor, magic_resistance, faith, speed):
         self.level = level
@@ -62,6 +58,18 @@ class Move:
 class MoveType:
     Physical = 1
     Magic = 2
+
+creature1 = Creature(10, 100, 20, 30, 15, 10, 5, 50)
+creature2 = Creature(8, 80, 15, 25, 12, 8, 3, 60)
+
+counter = (0)
+
+move1 = Move("Fireball", 40, MoveType.Magic, False)
+move2 = Move("Heal", 30, MoveType.Magic, True)
+move3 = Move("Tackle", 20, MoveType.Physical, False)
+move4 = Move("Firebolt", 40, MoveType.Magic, False)
+move5 = Move("Cure", 30, MoveType.Magic, True)
+move6 = Move("Rush", 20, MoveType.Physical, False)
 
 def notfication():
     col1.write(f"Creature 1 Health: {creature1.health}")
