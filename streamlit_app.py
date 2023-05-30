@@ -99,7 +99,7 @@ def re_calculate():
 def attack_one():
     # Action to be performed when the button is clicked
     creature1.attack(move1, creature2)
-    counter = counter +1
+    counter += 1
 
     notfication()
     re_calculate()
@@ -107,7 +107,7 @@ def attack_one():
 def attack_two():
     # Action to be performed when the button is clicked
     creature1.attack(move2, creature2)
-    counter = counter +1
+    counter += 1
 
     notfication()
     re_calculate()
@@ -115,7 +115,7 @@ def attack_two():
 def attack_three():
     # Action to be performed when the button is clicked
     creature1.attack(move3, creature2)
-    counter = counter +1
+    counter += 1
 
     notfication()
     re_calculate()
@@ -123,7 +123,7 @@ def attack_three():
 def attack_four():
     # Action to be performed when the button is clicked
     creature2.attack(move4, creature1)
-    counter = counter +1
+    counter += 1
 
     notfication()
     re_calculate()
@@ -131,7 +131,7 @@ def attack_four():
 def attack_five():
     # Action to be performed when the button is clicked
     creature2.attack(move5, creature1)
-    counter = counter +1
+    counter += 1
 
     notfication()
     re_calculate()
@@ -139,7 +139,7 @@ def attack_five():
 def attack_six():
     # Action to be performed when the button is clicked
     creature2.attack(move6, creature1)
-    counter = counter +1
+    counter += 1
 
     notfication()
     re_calculate()
@@ -148,7 +148,7 @@ def main():
     creature1 = Creature(10, 100, 20, 30, 15, 10, 5, 50)
     creature2 = Creature(8, 80, 15, 25, 12, 8, 3, 60)
 
-    counter = (0)
+    counter = 0
 
     move1 = Move("Fireball", 40, MoveType.Magic, False)
     move2 = Move("Heal", 30, MoveType.Magic, True)
