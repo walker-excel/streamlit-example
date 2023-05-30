@@ -103,8 +103,8 @@ def main():
         col1.write("Faster")
         col2.write("Slower")
     else:
-        col2.write("Slower")
-        col1.write("Faster")
+        col2.write("Faster")
+        col1.write("Slower")
 
 def attack_one():
     global counter  # Declare counter as a global variable
