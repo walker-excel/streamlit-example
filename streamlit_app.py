@@ -15,6 +15,7 @@ forums](https://discuss.streamlit.io).
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
 
+
 class Creature:
     def __init__(self, level, health, physical_attack, magic_attack, armor, magic_resistance, faith, speed):
         self.level = level
@@ -59,84 +60,10 @@ class MoveType:
     Physical = 1
     Magic = 2
 
-def notfication():
-    col1.write(f"Creature 1 Health: {creature1.health}")
-    col2.write(f"Creature 2 Health: {creature2.health}")
-
-    if creature1.health > 0:
-        col1.write("Victory!")
-        col2.write("Defeat...")
-    elif creature2.health > 0:
-        col2.write("Victory!")
-        col1.write("Defeat...")
-    else:
-        col1.write("Opponent's Turn...")
-        col2.write("Your Turn...")
-
-def re_calculate():
-    if counter == 2:
-        if creature1.speed > creature2.speed:
-            col1.write("Choose an attack")
-            col2.write("Waiting...")
-        else:
-            col2.write("Choose an attack")
-            col1.write("Waiting...")
-        counter = 0
-
-
-def attack_one():
-    # Action to be performed when the button is clicked
-    creature1.attack(move1, creature2)
-    counter = counter +1
-
-    notfication()
-    re_calculate()
-
-def attack_two():
-    # Action to be performed when the button is clicked
-    creature1.attack(move2, creature2)
-    counter = counter +1
-
-    notfication()
-    re_calculate()
-
-def attack_three():
-    # Action to be performed when the button is clicked
-    creature1.attack(move3, creature2)
-    counter = counter +1
-
-    notfication()
-    re_calculate()
-
-def attack_four():
-    # Action to be performed when the button is clicked
-    creature2.attack(move4, creature1)
-    counter = counter +1
-
-    notfication()
-    re_calculate()
-
-def attack_five():
-    # Action to be performed when the button is clicked
-    creature2.attack(move5, creature1)
-    counter = counter +1
-
-    notfication()
-    re_calculate()
-
-def attack_six():
-    # Action to be performed when the button is clicked
-    creature2.attack(move6, creature1)
-    counter = counter +1
-
-    notfication()
-    re_calculate()
 
 def main():
     creature1 = Creature(10, 100, 20, 30, 15, 10, 5, 50)
     creature2 = Creature(8, 80, 15, 25, 12, 8, 3, 60)
-
-    counter = (0)
 
     move1 = Move("Fireball", 40, MoveType.Magic, False)
     move2 = Move("Heal", 30, MoveType.Magic, True)
@@ -150,26 +77,45 @@ def main():
 
     st.title("Pokemon Battle")
 
-    col1, col2, = st.columns(2)
+    col1, col2 = st.columns(2)
 
     with col1:
         st.header("Creature 1")
-        st.button(f"{move1.name}", on_click=attack_one)
-        st.button(f"{move2.name}", on_click=attack_two)
-        st.button(f"{move3.name}", on_click=attack_three)
+        if faster_creature == creature1:
+            st.write("Choose an attack")
+            if st.button(f"{move1.name}", key="attack1"):
+                creature1.attack(move1, creature2)
+            if st.button(f"{move2.name}", key="attack2"):
+                creature1.attack(move2, creature2)
+            if st.button(f"{move3.name}", key="attack3"):
+                creature1.attack(move3, creature2)
+        else:
+            st.write("Waiting...")
 
     with col2:
         st.header("Creature 2")
-        st.button(f"{move4.name}", on_click=attack_four)
-        st.button(f"{move5.name}", on_click=attack_five)
-        st.button(f"{move6.name}", on_click=attack_six)
+        if faster_creature == creature2:
+            st.write("Choose an attack")
+            if st.button(f"{move4.name}", key="attack4"):
+                creature2.attack(move4, creature1)
+            if st.button(f"{move5.name}", key="attack5"):
+                creature2.attack(move5, creature1)
+            if st.button(f"{move6.name}", key="attack6"):
+                creature2.attack(move6, creature1)
+        else:
+            st.write("Waiting...")
 
-    if creature1.speed > creature2.speed:
-        col1.write("Choose an attack")
-        col2.write("Waiting...")
+    st.write(f"Creature 1 Health: {creature1.health}")
+    st.write(f"Creature 2 Health: {creature2.health}")
+
+    if creature1.health <= 0 or creature2.health <= 0:
+        if creature1.health > creature2.health:
+            st.write("Victory!")
+        else:
+            st.write("Defeat...")
     else:
-        col2.write("Choose an attack")
-        col1.write("Waiting...")
+        st.write("Battle ongoing...")
+
 
 if __name__ == "__main__":
     main()
