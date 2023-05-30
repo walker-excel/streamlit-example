@@ -108,10 +108,10 @@ def notfication():
     col1.write(f"\nCreature 1 Health: {creature1.health}")
     col2.write(f"\nCreature 2 Health: {creature2.health}")
 
-    if creature1.health ==> 0:
+    if creature1.health <= 0:
         col1.write("Victory!")
         col2.write("Defeat...")
-    elif creature2.health ==> 0:
+    elif creature2.health <= 0:
         col2.write("Victory!")
         col1.write("Defeat...")
     else:
