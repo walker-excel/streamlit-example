@@ -176,8 +176,8 @@ def attack_six():
     v_notification()
 
 def notfication():
-    col1.write(f"\nCreature 1 Health: {creature1.health}")
-    col2.write(f"\nCreature 2 Health: {creature2.health}")
+    col1.write(f"Creature 1 Health: {creature1.health}")
+    col2.write(f"Creature 2 Health: {creature2.health}")
 
 def v_notification():
 
