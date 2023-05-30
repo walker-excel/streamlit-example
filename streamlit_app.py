@@ -82,7 +82,8 @@ def main():
 
     st.title("Pokemon Battle")
 
-    global col1, col2 = st.columns(2)
+    global col1, col2
+    col1, col2 = st.columns(2)
 
     with col1:
         st.header("Creature 1")
