@@ -68,191 +68,61 @@ move6 = Move("Rush", 20, MoveType.Physical, False) # Define move6
 global line_number
 
 def main():
-    global creature1, creature2, counter, line_number  # Declare variables as global
-
     creature1 = Creature(10, 100, 20, 30, 15, 10, 5, 50)
     creature2 = Creature(8, 80, 15, 25, 12, 8, 3, 60)
 
-    counter = 0
-    line_number = 1
-
-    faster_creature = creature1 if creature1.speed > creature2.speed else creature2
-    slower_creature = creature2 if faster_creature == creature1 else creature1
-
     st.title("Test Battle")
 
-    global col1, col2
     col1, col2 = st.columns(2)
 
     with col1:
         st.header("Creature 1")
-        st.button(f"{move1.name}", on_click=attack_one)
-        st.button(f"{move2.name}", on_click=attack_two)
-        st.button(f"{move3.name}", on_click=attack_three)
+        if st.button(f"{move1.name}"):
+            attack_one(creature1, creature2, move1)
+        if st.button(f"{move2.name}"):
+            attack_two(creature1, creature2, move2)
+        if st.button(f"{move3.name}"):
+            attack_three(creature1, creature2, move3)
 
     with col2:
         st.header("Creature 2")
-        st.button(f"{move4.name}", on_click=attack_four)
-        st.button(f"{move5.name}", on_click=attack_five)
-        st.button(f"{move6.name}", on_click=attack_six)
-
-    st.write(f"{line_number}. Creature 1 has {creature1.health}HP and Creature 2 has {creature2.health}HP")
-
-    line_number += 1
-
-    if creature1.speed > creature2.speed:
-        st.write(f"{line_number}. Creature 1 has a speed of {creature1.speed} which is higher than Creature 2's {creature2.speed}. Creature 1's Turn to Attack")
-    else:
-        st.write(f"{line_number}. Creature 2 has a speed of {creature2.speed} which is higher than Creature 1's {creature1.speed}. Creature 2's Turn to Attack")
-
-    line_number += 1
-
-def attack_one():
-    global counter, line_number  # Declare counter and line_number as global variables
-
-    # Action to be performed when the button is clicked
-    damage = creature1.attack(move1, creature2)
-    creature2_health = creature2.health
-
-    # Create an empty placeholder
-    output_placeholder = st.empty()
-
-    # Update the content of the placeholder with the new output
-    output_placeholder.write(f"{line_number}. Creature 1 dealt {damage} damage to Creature 2 which now has {creature2_health} HP.")
-
-    line_number += 1
-
-    if counter == 2:
-        if creature1.speed > creature2.speed:
-            output_placeholder.write(f"{line_number}. Creature 1 has a speed of {creature1.speed} which is higher than Creature 2's {creature2.speed}. Creature 1's Turn to Attack")
-            counter = 0
-        else:
-            output_placeholder.write(f"{line_number}. Creature 2 has a speed of {creature2.speed} which is higher than Creature 1's {creature1.speed}. Creature 2's Turn to Attack")
-            counter = 0
-    elif creature1.health <= 0:
-        output_placeholder.write(f"{line_number}. Creature 1 has {creature1.health} HP. Creature 2 Wins!")
-    elif creature2.health <= 0:
-        output_placeholder.write(f"{line_number}. Creature 2 has {creature2.health} HP. Creature 1 Wins!")
-    else:
-        output_placeholder.write(f"{line_number}. Creature 2's turn to attack")
-
-    line_number += 1
-    counter += 1  # Add 1 to counter
+        if st.button(f"{move4.name}"):
+            attack_four(creature1, creature2, move4)
+        if st.button(f"{move5.name}"):
+            attack_five(creature1, creature2, move5)
+        if st.button(f"{move6.name}"):
+            attack_six(creature1, creature2, move6)
 
 
-def attack_two():
-    global counter  # Declare counter as a global variable
-    # Action to be performed when the button is clicked
-    creature1.attack(move2, creature2)
-    counter += 1  # Add 1 to counter
-
-    notfication()
-    c_turn_one()
-    re_calculate()
-    v_notification()
+def attack_one(attacker, defender, move):
+    damage = attacker.attack(move, defender)
+    st.write(f"Creature 1 dealt {damage} damage to Creature 2. Creature 2 now has {defender.health} HP.")
 
 
-def attack_three():
-    global counter  # Declare counter as a global variable
-    # Action to be performed when the button is clicked
-    creature1.attack(move3, creature2)
-    counter += 1  # Add 1 to counter
-
-    notfication()
-    c_turn_one()
-    re_calculate()
-    v_notification()
+def attack_two(attacker, defender, move):
+    damage = attacker.attack(move, defender)
+    st.write(f"Creature 1 healed for {damage} HP. Creature 1 now has {attacker.health} HP.")
 
 
-def attack_four():
-    global counter, line_number  # Declare counter and line_number as global variables
-
-    # Action to be performed when the button is clicked
-    damage = creature2.attack(move4, creature1)
-    creature1_health = creature1.health
-
-    # Create an empty placeholder
-    output_placeholder = st.empty()
-
-    # Update the content of the placeholder with the new output
-    output_placeholder.write(f"{line_number}. Creature 2 dealt {damage} damage to Creature 1 which now has {creature1_health} HP.")
-
-    line_number += 1
-
-    if counter == 2:
-        if creature1.speed > creature2.speed:
-            output_placeholder.write(f"{line_number}. Creature 1 has a speed of {creature1.speed} which is higher than Creature 2's {creature2.speed}. Creature 1's Turn to Attack")
-            counter = 0
-        else:
-            output_placeholder.write(f"{line_number}. Creature 2 has a speed of {creature2.speed} which is higher than Creature 1's {creature1.speed}. Creature 2's Turn to Attack")
-            counter = 0
-    elif creature1.health <= 0:
-        output_placeholder.write(f"{line_number}. Creature 1 has {creature1.health} HP. Creature 2 Wins!")
-    elif creature2.health <= 0:
-        output_placeholder.write(f"{line_number}. Creature 2 has {creature2.health} HP. Creature 1 Wins!")
-    else:
-        output_placeholder.write(f"{line_number}. Creature 1's turn to attack")
-
-    line_number += 1
-    counter += 1  # Add 1 to counter
+def attack_three(attacker, defender, move):
+    damage = attacker.attack(move, defender)
+    st.write(f"Creature 1 dealt {damage} damage to Creature 2. Creature 2 now has {defender.health} HP.")
 
 
-def attack_five():
-    global counter  # Declare counter as a global variable
-    # Action to be performed when the button is clicked
-    creature2.attack(move5, creature1)
-    counter += 1  # Add 1 to counter
-
-    notfication()
-    c_turn_two()
-    re_calculate()
-    v_notification()
+def attack_four(attacker, defender, move):
+    damage = attacker.attack(move, defender)
+    st.write(f"Creature 2 dealt {damage} damage to Creature 1. Creature 1 now has {defender.health} HP.")
 
 
-def attack_six():
-    global counter  # Declare counter as a global variable
-    # Action to be performed when the button is clicked
-    creature2.attack(move6, creature1)
-    counter += 1  # Add 1 to counter
-
-    notfication()
-    c_turn_two()
-    re_calculate()
-    v_notification()
-
-def notfication():
-    col1.write(f"Creature 1 Health: {creature1.health}")
-    col2.write(f"Creature 2 Health: {creature2.health}")
-
-def v_notification():
-
-    if creature1.health <= 0:
-        col1.write("Victory!")
-        col2.write("Defeat...")
-    elif creature2.health <= 0:
-        col2.write("Defeat...")
-        col1.write("Victory")
-
-def c_turn_one():
-    col1.write("Opponent's Turn...")
-    col2.write("Your Turn...")
-
-def c_turn_two():
-    col1.write("Your Turn...")
-    col2.write("Opponent's Turn...")
+def attack_five(attacker, defender, move):
+    damage = attacker.attack(move, defender)
+    st.write(f"Creature 2 healed for {damage} HP. Creature 2 now has {attacker.health} HP.")
 
 
-def re_calculate():
-    global counter  # Declare counter as a global variable
-    if counter == 2:
-        if creature1.speed > creature2.speed:
-            col1.write("Choose an attack creature 1")
-            col2.write("Waiting on Creature 1...")
-            counter = 0
-        else:
-            col2.write("\nChoose an attack creature 2")
-            col1.write("\nWaiting on Creature 2...")
-            counter = 0
+def attack_six(attacker, defender, move):
+    damage = attacker.attack(move, defender)
+    st.write(f"Creature 2 dealt {damage} damage to Creature 1. Creature 1 now has {defender.health} HP.")
+
 
 if __name__ == "__main__":
     main()
