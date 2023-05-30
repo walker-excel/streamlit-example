@@ -95,21 +95,20 @@ def main():
     with col2:
         st.header("Creature 2")
         if st.button(f"{move4.name}"):
-            output = attack_four(creature1, creature2, move4)
+            output = attack_four(creature2, creature1, move4)
             attack_outputs.append(output)
             check_win_condition(creature1, creature2, attack_outputs)
         if st.button(f"{move5.name}"):
-            output = attack_five(creature1, creature2, move5)
+            output = attack_five(creature2, creature1, move5)
             attack_outputs.append(output)
             check_win_condition(creature1, creature2, attack_outputs)
         if st.button(f"{move6.name}"):
-            output = attack_six(creature1, creature2, move6)
+            output = attack_six(creature2, creature1, move6)
             attack_outputs.append(output)
             check_win_condition(creature1, creature2, attack_outputs)
 
     st.write("Attack Logs:")
-    for output in attack_outputs:
-        st.write(output)
+    st.write("\n".join(attack_outputs))
 
 
 def attack_one(attacker, defender, move):
