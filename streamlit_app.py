@@ -125,10 +125,11 @@ def re_calculate():
         if creature1.speed > creature2.speed:
             col1.write("Choose an attack")
             col2.write("Waiting...")
+            counter = 0
         else:
             col2.write("Choose an attack")
             col1.write("Waiting...")
-        counter = 0
+            counter = 0
 
 
 def attack_one():
