@@ -50,7 +50,7 @@ def main():
 
             try:
                 # Make API request to the provided URL
-                response = make_api_request("https://restapina.ticketsearch.com/venue/swagger/VenueOpenAPISpecificationv1.0/swagger.json", headers=headers, data=data)
+                response = make_api_request("https://restapina.ticketsearch.com/venue/api/v1/venues", headers=headers, data=data)
                 
                 # Display the response data
                 st.subheader("Response Data")
