@@ -1,4 +1,5 @@
 import requests
+import json
 import streamlit as st
 
 # Function to make API requests
