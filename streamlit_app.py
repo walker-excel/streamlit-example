@@ -4,7 +4,7 @@ import streamlit as st
 
 # Function to make API requests
 def make_api_request(url, headers=None, data=None):
-    response = requests.post(url, headers=headers, json=data)
+    response = requests.get(url, headers=headers, json=data)
     response.raise_for_status()
     return response.json()
 
@@ -28,10 +28,9 @@ def main():
         if api_key and orgcode:
             # Set the API key and orgcode in the headers
             headers = {
-                "accept": "application/json",
+                "Content-Type": "application/json",
                 "apikey": api_key,
-                "orgcode": orgcode,
-                "Content-Type": "application/json"
+                "orgcode": orgcode
             }
 
             #headers_data= json.dumps(headers)
