@@ -30,7 +30,8 @@ def main():
             headers = {
                 "accept": "application/json",
                 "apikey": api_key,
-                "orgcode": orgcode
+                "orgcode": orgcode,
+                "Content-Type": "application/json"
             }
 
             #headers_data= json.dumps(headers)
