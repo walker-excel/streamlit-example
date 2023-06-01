@@ -31,7 +31,7 @@ def main():
             # Set the API key and orgcode in the headers
             headers = {
                 "apikey": f"{api_key}",
-                "orgcode": orgcode
+                "Orgcode": orgcode
             }
 
             try:
