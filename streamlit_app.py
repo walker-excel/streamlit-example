@@ -27,7 +27,6 @@ def main():
         if api_key and orgcode:
             # Set the API key and orgcode in the headers
             headers = {
-                "accept": "application/json",
                 "apikey": api_key,
                 "orgcode": orgcode,
                 "Content-Type": "application/json"
