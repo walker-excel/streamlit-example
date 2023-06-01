@@ -27,7 +27,11 @@ def main():
     if st.button("Fetch Data"):
         if api_key and orgcode:
             # Set the API key and orgcode in the headers
-            headers = {"Content-Type: application/json" "apikey: FM6YIOKWZZATKWPMJXD7PD3SUBLURLYNQJAEKMGMQAJ4AWH3RQJEOTAE7VOMEDJXM2HXJI5ZCXUIG" "orgcode: DBeatsInc"}
+            headers = {
+                "Content-Type": "application/json",
+                "apikey": api_key,
+                "orgcode": orgcode
+            }
 
             #headers_data= json.dumps(headers)
 
@@ -45,7 +49,7 @@ def main():
 
             try:
                 # Make API request to the provided URL
-                response = make_api_request("https://restapina.ticketsearch.com/venue/api/v1/venues", headers=headers, data=data)
+                response = make_api_request("https://restapina.ticketsearch.com/venue/api/v1/venues", headers=headers_data, data=data)
                 
                 # Display the response data
                 st.subheader("Response Data")
