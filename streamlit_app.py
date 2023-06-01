@@ -33,7 +33,7 @@ def main():
 
             try:
                 # Make API request to the desired endpoint
-                response = make_api_request("scanning/swagger/ScanningOpenAPISpecificationv1.0/swagger.json", headers=headers)
+                response = make_api_request("venue/api/v1/venues", headers=headers)
                 st.json(response)
             except requests.exceptions.HTTPError as e:
                 st.error(f"Error: {e}")
