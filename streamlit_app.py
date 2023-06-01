@@ -5,7 +5,7 @@ API_URL = "https://restapina.ticketsearch.com/scanning/swagger/ScanningOpenAPISp
 API_KEY = "FM6YIOKWZZATKWPMJXD7PD3SUBLURLYNQJAEKMGMQAJ4AWH3RQJEOTAE7VOMEDJXM2HXJI5ZCXUIG"  # Replace with your API key
 
 def get_field_names():
-    url = f"{API_URL}/openapi.json"
+    url = API_URL
     headers = {
         "apikey": API_KEY,
         "Content-Type": "application/json"
