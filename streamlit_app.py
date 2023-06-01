@@ -44,7 +44,11 @@ def main():
             try:
                 # Make API request to the provided URL
                 response = make_api_request("https://restapina.ticketsearch.com/venue/api/v1/venues", headers=headers, data=request_data)
+                
+                # Display the response data
+                st.subheader("Response Data")
                 st.json(response)
+                
             except requests.exceptions.HTTPError as e:
                 st.error(f"Error: {e}")
         else:
