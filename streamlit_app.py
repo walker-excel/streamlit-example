@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 API_URL = "https://restapina.ticketsearch.com/scanning/swagger/ScanningOpenAPISpecificationv1.0/swagger.json"  # Replace with your API URL
-API_KEY = "FM6YIOKWZZATKWPMJXD7PD3SUBLURLYNQJAEKMGMQAJ4AWH3RQJEOTAE7VOMEDJXM2HXJI5ZCXUIG"  # Replace with your API key
+API_KEY = ""  # Replace with your API key
 
 def get_field_names():
     url = API_URL
