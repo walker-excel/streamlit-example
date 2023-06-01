@@ -3,7 +3,7 @@ import streamlit as st
 
 # Function to make API requests
 def make_api_request(url, headers=None, data=None):
-    response = requests.post(url, headers=headers, json=data)
+    response = requests.get(url, headers=headers, json=data)
     response.raise_for_status()
     return response.json()
 
