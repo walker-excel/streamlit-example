@@ -48,6 +48,9 @@ def main():
             data = json.dumps(request_data)
 
             try:
+                # Display the request data
+                st.subheader("Request Data")
+                st.json(request_data)
                 # Make API request to the provided URL
                 response = make_api_request("https://restapina.ticketsearch.com/venue/api/v1/venues", headers=headers, data=data)
                 
