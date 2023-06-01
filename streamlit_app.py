@@ -27,24 +27,28 @@ def main():
         if api_key and orgcode:
             # Set the API key and orgcode in the headers
             headers = {
-            "Content-Type": "application/json",
-            "apikey": api_key,
-            "orgcode": orgcode
+                "Content-Type : application/json",
+                f"apikey: {api_key}",
+                f"orgcode: {orgcode}"
             }
 
+            headers_data= json.dumps(headers)
 
             # Prepare the request data
             request_data = {
-                "pageNumber": 1,
-                "pageSize": 10,
-                "includeInactive": True,
-                "sortParameters": [{"fieldName": "string", "isAscending": True}],
-                "filterParameters": [{"fieldName": "string", "fieldValue": "string", "isLikeSearch": True}]
+            "pageNumber": 1,
+            "pageSize": 10,
+            "includeInactive": True,
+            "sortParameters": [{"fieldName": "string", "isAscending": True}],
+            "filterParameters": [{"fieldName": "string", "fieldValue": "string", "isLikeSearch": True}]
             }
+
+            # Convert request_data to JSON
+            data = json.dumps(request_data)
 
             try:
                 # Make API request to the provided URL
-                response = make_api_request("https://restapina.ticketsearch.com/venue/api/v1/venues", headers=headers, data=request_data)
+                response = make_api_request("https://restapina.ticketsearch.com/venue/api/v1/venues", headers=headers_data, data=data)
                 
                 # Display the response data
                 st.subheader("Response Data")
