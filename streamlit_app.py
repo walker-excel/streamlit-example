@@ -2,17 +2,8 @@ import requests
 import streamlit as st
 
 # Function to make API requests
-def make_api_request(url, api_key, orgcode):
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json"
-    }
-
-    payload = {
-        "orgcode": orgcode
-    }
-
-    response = requests.post(url, json=payload, headers=headers)
+def make_api_request(url, headers=None):
+    response = requests.get(url, headers=headers)
     response.raise_for_status()
     return response.json()
 
@@ -29,22 +20,28 @@ def main():
     api_key = st.text_input("Enter your API key", type="password")
 
     # Input request URL
-    url = st.text_input("Enter the request URL")
+    request_url = st.text_input("Enter the request URL")
 
-    # Input orgcode request body parameter
-    orgcode = st.text_input("Enter the orgcode parameter")
+    # Input orgcode
+    orgcode = st.text_input("Enter the orgcode")
 
     # Button to trigger API request
     if st.button("Fetch Data"):
-        if api_key and url and orgcode:
+        if api_key and request_url and orgcode:
+            # Set the API key and orgcode in the headers
+            headers = {
+                "Authorization": f"Bearer {api_key}",
+                "orgcode": orgcode
+            }
+
             try:
-                # Make API request
-                response = make_api_request(url, api_key, orgcode)
+                # Make API request to the provided URL
+                response = make_api_request(request_url, headers=headers)
                 st.json(response)
             except requests.exceptions.HTTPError as e:
                 st.error(f"Error: {e}")
         else:
-            st.warning("Please enter all the required information.")
+            st.warning("Please enter your API key, request URL, and orgcode.")
 
 # Run the Streamlit app
 if __name__ == "__main__":
