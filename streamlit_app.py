@@ -1,39 +1,45 @@
-import streamlit as st
 import requests
+import streamlit as st
 
-API_URL = "https://restapina.ticketsearch.com/scanning/swagger/ScanningOpenAPISpecificationv1.0/swagger.json"  # Replace with your API URL
-API_KEY = ""  # Replace with your API key
+# Define the base URL of the API
+base_url = "https://restapina.ticketsearch.com/scanning"
 
-def get_field_names():
-    url = API_URL
-    headers = {
-        "apikey": API_KEY,
-        "Content-Type": "application/json"
-    }
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        api_spec = response.json()
-        field_names = []
-        for path in api_spec["paths"]:
-            for method in api_spec["paths"][path]:
-                parameters = api_spec["paths"][path][method].get("parameters", [])
-                for parameter in parameters:
-                    name = parameter["name"]
-                    field_names.append(name)
-        return field_names
-    else:
-        st.error("Failed to retrieve API specifications")
+# Function to make API requests
+def make_api_request(endpoint, params=None, headers=None):
+    url = f"{base_url}/{endpoint}"
+    response = requests.get(url, params=params, headers=headers)
+    response.raise_for_status()
+    return response.json()
 
+# Streamlit app
 def main():
-    st.title("Field Names Viewer")
+    # Set the page title
+    st.set_page_config(page_title="API Demo")
 
-    field_names = get_field_names()
-    if field_names:
-        st.header("Field Names")
-        for i, field in enumerate(field_names[:10], 1):
-            st.write(f"{i}. {field}")
-    else:
-        st.error("Field names could not be retrieved")
+    # Display a title and a description
+    st.title("API Demo")
+    st.markdown("This is a demo of accessing the API using an API key.")
 
+    # Input API key
+    api_key = st.text_input("Enter your API key", type="password")
+
+    # Button to trigger API request
+    if st.button("Fetch Data"):
+        if api_key:
+            # Set the API key in the headers
+            headers = {
+                "Authorization": f"Bearer {api_key}"
+            }
+
+            try:
+                # Make API request to the desired endpoint
+                response = make_api_request("scanning", headers=headers)
+                st.json(response)
+            except requests.exceptions.HTTPError as e:
+                st.error(f"Error: {e}")
+        else:
+            st.warning("Please enter your API key.")
+
+# Run the Streamlit app
 if __name__ == "__main__":
     main()
