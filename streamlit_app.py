@@ -30,7 +30,7 @@ def main():
         if api_key and request_url and orgcode:
             # Set the API key and orgcode in the headers
             headers = {
-                "Authorization": f"Bearer {api_key}",
+                "apikey": api_key
                 "orgcode": orgcode
             }
 
