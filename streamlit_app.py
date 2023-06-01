@@ -1,13 +1,18 @@
 import requests
 import streamlit as st
 
-# Define the base URL of the API
-base_url = "https://restapina.ticketsearch.com"
-
 # Function to make API requests
-def make_api_request(endpoint, params=None, headers=None):
-    url = f"{base_url}/{endpoint}"
-    response = requests.get(url, params=params, headers=headers)
+def make_api_request(url, api_key, orgcode):
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "orgcode": orgcode
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
     response.raise_for_status()
     return response.json()
 
@@ -23,22 +28,23 @@ def main():
     # Input API key
     api_key = st.text_input("Enter your API key", type="password")
 
+    # Input request URL
+    url = st.text_input("Enter the request URL")
+
+    # Input orgcode request body parameter
+    orgcode = st.text_input("Enter the orgcode parameter")
+
     # Button to trigger API request
     if st.button("Fetch Data"):
-        if api_key:
-            # Set the API key in the headers
-            headers = {
-                "Authorization": f"Bearer {api_key}"
-            }
-
+        if api_key and url and orgcode:
             try:
-                # Make API request to the desired endpoint
-                response = make_api_request("venue/api/v1/venues", headers=headers)
+                # Make API request
+                response = make_api_request(url, api_key, orgcode)
                 st.json(response)
             except requests.exceptions.HTTPError as e:
                 st.error(f"Error: {e}")
         else:
-            st.warning("Please enter your API key.")
+            st.warning("Please enter all the required information.")
 
 # Run the Streamlit app
 if __name__ == "__main__":
