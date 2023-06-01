@@ -2,7 +2,7 @@ import requests
 import streamlit as st
 
 # Define the base URL of the API
-base_url = "https://restapina.ticketsearch.com/scanning/swagger/ScanningOpenAPISpecificationv1.0/swagger.json"
+base_url = "https://restapina.ticketsearch.com/"
 
 # Function to make API requests
 def make_api_request(endpoint, params=None, headers=None):
@@ -33,7 +33,7 @@ def main():
 
             try:
                 # Make API request to the desired endpoint
-                response = make_api_request("scanning", headers=headers)
+                response = make_api_request("scanning/swagger/ScanningOpenAPISpecificationv1.0/swagger.json", headers=headers)
                 st.json(response)
             except requests.exceptions.HTTPError as e:
                 st.error(f"Error: {e}")
