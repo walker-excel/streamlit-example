@@ -3,7 +3,7 @@ import streamlit as st
 
 # Function to make API requests
 def make_api_request(url, headers=None, data=None):
-    response = requests.get(url, headers=headers, json=data)
+    response = requests.post(url, headers=headers, json=data)
     response.raise_for_status()
     return response.json()
 
@@ -51,6 +51,10 @@ def main():
                 
             except requests.exceptions.HTTPError as e:
                 st.error(f"Error: {e}")
+                st.write(response)
+                st.write(orgcode)
+                st.write(api_key)
+                st.write(headers)
         else:
             st.warning("Please enter your API key and orgcode.")
 
