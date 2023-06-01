@@ -1,11 +1,16 @@
 import streamlit as st
 import requests
 
-API_URL = "https://api.example.com"  # Replace with your API URL
+API_URL = "https://restapina.ticketsearch.com/scanning/swagger/ScanningOpenAPISpecificationv1.0/swagger.json"  # Replace with your API URL
+API_KEY = "FM6YIOKWZZATKWPMJXD7PD3SUBLURLYNQJAEKMGMQAJ4AWH3RQJEOTAE7VOMEDJXM2HXJI5ZCXUIG"  # Replace with your API key
 
 def get_field_names():
-    url = f"{API_URL}/openapi.json"
-    response = requests.get(url)
+    url = f"{API_URL}"
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+    response = requests.get(url, headers=headers)
     if response.status_code == 200:
         api_spec = response.json()
         field_names = []
