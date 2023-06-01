@@ -51,7 +51,6 @@ def main():
                 
             except requests.exceptions.HTTPError as e:
                 st.error(f"Error: {e}")
-                st.write(response)
                 st.write(orgcode)
                 st.write(api_key)
                 st.write(headers)
