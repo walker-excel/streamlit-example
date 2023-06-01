@@ -17,10 +17,12 @@ def main():
     st.markdown("This is a demo of accessing the API using an API key.")
 
     # Input API key
-    api_key = st.text_input("Enter your API key", type="password")
+    api_key = "FM6YIOKWZZATKWPMJXD7PD3SUBLURLYNQJAEKMGMQAJ4AWH3RQJEOTAE7VOMEDJXM2HXJI5ZCXUIG"
+    #st.text_input("Enter your API key", type="password")
 
     # Input orgcode
-    orgcode = st.text_input("Enter the orgcode")
+    orgcode = "DBeatsInc"
+    #st.text_input("Enter the orgcode")
 
     # Button to trigger API request
     if st.button("Fetch Data"):
