@@ -2,7 +2,7 @@ import requests
 import streamlit as st
 
 # Define the base URL of the API
-base_url = "https://restapina.ticketsearch.com/"
+base_url = "https://restapina.ticketsearch.com"
 
 # Function to make API requests
 def make_api_request(endpoint, params=None, headers=None):
