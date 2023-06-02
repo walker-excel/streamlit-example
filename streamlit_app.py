@@ -28,9 +28,10 @@ def main():
         if api_key and orgcode:
             # Set the API key and orgcode in the headers
             headers = {
-                "Content-Type": "application/json",
-                "apikey": api_key,
-                "orgcode": orgcode
+                "accept": "application/json",
+                "apikey": st.secrets["DB_APIKEY"],
+                "orgcode": st.secrets["DB_ORGCODE"],
+                "Content-Type": "application/json"
             }
 
             #headers_data= json.dumps(headers)
